@@ -11,6 +11,12 @@ export const Headline = styled.h1`
   margin-top: 20px;
 `;
 
+export const Title = styled.h2`
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
 export const Content = styled.div`
   display: flex;
   justify-content: center;
