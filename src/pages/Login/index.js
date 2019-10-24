@@ -25,6 +25,7 @@ export default function Login({ history }) {
 
       console.log(response.data);
       history.push('/user/main');
+      localStorage.setItem('@Sapo:username', response.data[0].fullname);
     } catch (err) {
       console.log(err.message);
     }
