@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
 import { InputLabel, Input } from '@material-ui/core';
+import { UserTypes } from '~/store/ducks/user';
 import { Container, LoginBox, Control, LoginButton } from './styles';
 import api from '~/services/api';
 
 export default function Login({ history }) {
   const [username, setUsername] = useState('');
   const [pass, setPass] = useState('');
+  const dispatch = useDispatch();
 
   function handleUsername(u) {
     setUsername(u);
@@ -18,14 +20,11 @@ export default function Login({ history }) {
 
   async function handleLogin() {
     try {
-      const response = await api.post('/user/login', {
+      dispatch({
+        type: UserTypes.USER_LOGIN_REQUEST,
         username,
         password: pass,
       });
-
-      console.log(response.data);
-      history.push('/user/main');
-      localStorage.setItem('@Sapo:username', response.data[0].fullname);
     } catch (err) {
       console.log(err.message);
     }

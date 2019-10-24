@@ -1,16 +1,14 @@
 import React from 'react';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
-
+import { useSelector } from 'react-redux';
 import { Title } from './styles';
 
 export default function Menu() {
-  const name = localStorage.getItem('@Sapo:username');
+  const name = useSelector(state => state.user.data[0].fullname);
   return (
     <AppBar position="static">
       <Toolbar>
-        <Title>
-          Bem vindo ao SAPO, {localStorage.getItem('@Sapo:username')}
-        </Title>
+        <Title>Bem vindo ao SAPO, {name}</Title>
         <Button color="inherit">Admin</Button>
       </Toolbar>
     </AppBar>
