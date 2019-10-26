@@ -6,11 +6,15 @@ import history from '~/services/history';
 
 export function* userLogin({ username, password }) {
   try {
-    const response = yield call(api.post, `/user/login`, {
+    const response = yield call(api.post, `/sessions/user`, {
       username,
       password,
     });
-    yield put(UserActions.userLoginSuccess(response.data));
+    const user = yield call(api.get, `/user/get`, {
+      headers: { Authorization: `Bearer ${response.data.token}` },
+    });
+    const userData = { ...user.data, token: response.data.token };
+    yield put(UserActions.userLoginSuccess(userData));
     history.push('/user/main');
   } catch (err) {
     toast.error(err.message);

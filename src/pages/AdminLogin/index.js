@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { InputLabel, Input } from '@material-ui/core';
-import { UserTypes } from '~/store/ducks/user';
+import { AdminTypes } from '~/store/ducks/admin';
 import { Container, LoginBox, Control, LoginButton } from './styles';
 
-export default function Login({ history }) {
-  const [username, setUsername] = useState('');
+export default function AdminLogin({ history }) {
+  const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const dispatch = useDispatch();
 
-  function handleUsername(u) {
-    setUsername(u);
+  function handleEmail(e) {
+    setEmail(e);
   }
 
   function handlePass(p) {
@@ -20,8 +20,8 @@ export default function Login({ history }) {
   async function handleLogin() {
     try {
       dispatch({
-        type: UserTypes.USER_LOGIN_REQUEST,
-        username,
+        type: AdminTypes.ADMIN_LOGIN_REQUEST,
+        email,
         password: pass,
       });
     } catch (err) {
@@ -32,14 +32,14 @@ export default function Login({ history }) {
   return (
     <Container>
       <LoginBox>
-        <h3>Logar no sistema</h3>
+        <h3>Logar de moderador</h3>
         <Control>
-          <InputLabel htmlFor="username">Usuário</InputLabel>
+          <InputLabel htmlFor="email">Email</InputLabel>
           <Input
-            id="username"
-            aria-describedby="usuário"
-            onChange={e => handleUsername(e.target.value)}
-            value={username}
+            id="email"
+            aria-describedby="email"
+            onChange={e => handleEmail(e.target.value)}
+            value={email}
           />
         </Control>
 

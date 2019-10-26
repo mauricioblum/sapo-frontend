@@ -19,6 +19,7 @@ export const Title = styled.h2`
 
 export const Content = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
@@ -30,8 +31,7 @@ export const FormBox = styled(Paper)`
   min-height: 300px;
   padding: 20px;
   display: flex;
-  justify-content: ${props =>
-    props.centered ? 'space-evenly' : 'space-around'};
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
@@ -40,7 +40,20 @@ export const Control = styled(FormControl)`
   width: 100%;
 `;
 
-export const SubmitButton = styled(Button).attrs({
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+`;
+
+export const TextWrapper = styled.div`
+  text-align: center;
+  width: 100%;
+  margin: 20px 0px;
+`;
+
+export const ButtonOption = styled(Button).attrs({
   variant: 'contained',
   color: 'primary',
 })`

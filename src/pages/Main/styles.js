@@ -29,7 +29,7 @@ export const OptionBox = styled(Paper)`
   margin-right: 35px;
   display: flex;
   justify-content: ${props =>
-    props.centered ? 'space-evenly' : 'space-around'};
+    props.centered === 'center' ? 'space-evenly' : 'space-around'};
   align-items: center;
   flex-direction: column;
 `;

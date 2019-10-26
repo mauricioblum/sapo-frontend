@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { InputLabel, Input } from '@material-ui/core';
 import Menu from '~/components/Menu';
 import {
   Container,
@@ -19,19 +18,16 @@ export default function Main({ history }) {
       <OptionsContainer>
         <OptionBox>
           <h3>Pesquisar um item perdido</h3>
-          <Control>
-            <InputLabel htmlFor="searchItem">Pesquisar</InputLabel>
-            <Input
-              id="searchItem"
-              aria-describedby="search"
-              onChange={() => {}}
-            />
-          </Control>
-          <OptionButton variant="contained" color="primary">
+          <Control />
+          <OptionButton
+            onClick={() => history.push('/user/item/search')}
+            variant="contained"
+            color="primary"
+          >
             Pesquisar
           </OptionButton>
         </OptionBox>
-        <OptionBox centered>
+        <OptionBox centered="center">
           <h3>Cadastrar um item perdido</h3>
 
           <OptionButton
