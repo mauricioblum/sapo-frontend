@@ -16,7 +16,7 @@ export default function Main({ history }) {
       <Menu />
       <Headline>O que você deseja fazer?</Headline>
       <OptionsContainer>
-        <OptionBox>
+        <OptionBox centered="center">
           <h3>Pesquisar um item perdido</h3>
           <Control />
           <OptionButton
@@ -28,7 +28,7 @@ export default function Main({ history }) {
           </OptionButton>
         </OptionBox>
         <OptionBox centered="center">
-          <h3>Cadastrar um item perdido</h3>
+          <h3>Cadastrar um item</h3>
 
           <OptionButton
             onClick={() => history.push('/user/item/new')}
@@ -36,6 +36,17 @@ export default function Main({ history }) {
             color="primary"
           >
             Cadastrar
+          </OptionButton>
+        </OptionBox>
+        <OptionBox centered="center">
+          <h3>Ver itens cadastrados</h3>
+
+          <OptionButton
+            onClick={() => history.push('/user/item/view')}
+            variant="contained"
+            color="primary"
+          >
+            Ver itens
           </OptionButton>
         </OptionBox>
       </OptionsContainer>

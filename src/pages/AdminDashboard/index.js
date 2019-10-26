@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import MaterialTable from 'material-table';
 import { toast } from 'react-toastify';
-import api from '~/services/api';
+import { adminApi } from '~/services/api';
 import defaultImg from '~/assets/images/default.png';
 import Menu from '~/components/Menu';
 
@@ -15,10 +15,10 @@ export default function AdminDashboard({ history }) {
 
   async function getItems() {
     try {
-      const lostItems = await api.get('/items?type=lost');
+      const lostItems = await adminApi.get('/items?type=lost');
       setLost(lostItems.data);
 
-      const foundItems = await api.get('/items?type=found');
+      const foundItems = await adminApi.get('/items?type=found');
       setFound(foundItems.data);
     } catch (err) {
       console.log(err.message);
@@ -28,7 +28,7 @@ export default function AdminDashboard({ history }) {
   async function editItem(items, action) {
     items.forEach(async item => {
       try {
-        await api.put(
+        await adminApi.put(
           `/items/${item.id}`,
           {
             active: action === 'active',

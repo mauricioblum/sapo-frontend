@@ -12,7 +12,7 @@ import {
 import Menu from '~/components/Menu';
 import defaultImg from '~/assets/images/default.png';
 
-import api from '~/services/api';
+import { adminApi } from '~/services/api';
 
 export default function Item(props) {
   const {
@@ -23,7 +23,7 @@ export default function Item(props) {
 
   async function getItem() {
     try {
-      const response = await api.get(`/items/${params.id}`);
+      const response = await adminApi.get(`/items/${params.id}`);
       setItem(response.data);
     } catch (err) {
       console.log(err.message);
