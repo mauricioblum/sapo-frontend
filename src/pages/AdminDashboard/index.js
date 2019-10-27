@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import MaterialTable from 'material-table';
 import { toast } from 'react-toastify';
 import { adminApi } from '~/services/api';
@@ -11,7 +10,6 @@ import { Container, Content, Title, Image } from './styles';
 export default function AdminDashboard({ history }) {
   const [lost, setLost] = useState([]);
   const [found, setFound] = useState([]);
-  const adminToken = useSelector(state => state.admin.data.token);
 
   async function getItems() {
     try {
@@ -28,15 +26,9 @@ export default function AdminDashboard({ history }) {
   async function editItem(items, action) {
     items.forEach(async item => {
       try {
-        await adminApi.put(
-          `/items/${item.id}`,
-          {
-            active: action === 'active',
-          },
-          {
-            headers: { Authorization: `Bearer ${adminToken}` },
-          }
-        );
+        await adminApi.put(`/items/${item.id}`, {
+          active: action === 'active',
+        });
       } catch (err) {
         toast.error(err.message);
       }
@@ -78,6 +70,7 @@ export default function AdminDashboard({ history }) {
             {
               title: 'Ativo',
               field: 'active',
+              defaultSort: 'desc',
               render: rowData =>
                 rowData.active ? <p>ATIVO</p> : <p>INATIVO</p>,
             },
@@ -90,6 +83,7 @@ export default function AdminDashboard({ history }) {
           options={{
             selection: true,
             pageSize: 10,
+            sorting: true,
           }}
           actions={[
             {
@@ -119,6 +113,7 @@ export default function AdminDashboard({ history }) {
             {
               title: 'Ativo',
               field: 'active',
+              defaultSort: 'desc',
               render: rowData =>
                 rowData.active ? <p>ATIVO</p> : <p>INATIVO</p>,
             },
@@ -131,6 +126,7 @@ export default function AdminDashboard({ history }) {
           options={{
             selection: true,
             pageSize: 10,
+            sorting: true,
           }}
           actions={[
             {

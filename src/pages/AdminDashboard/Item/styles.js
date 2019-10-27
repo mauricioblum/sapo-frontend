@@ -49,6 +49,13 @@ export const ButtonContainer = styled.div`
   width: 100%;
 `;
 
+export const ButtonContainerCenter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
 export const TextWrapper = styled.div`
   text-align: center;
   width: 100%;

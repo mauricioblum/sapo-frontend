@@ -19,6 +19,9 @@ export default function Menu({ type }) {
           <>
             <img src={logoIFRS} width="40" alt="logo" />
             <Title>Bem vindo ao SAPO</Title>
+            <Button onClick={() => history.push('/user/main')} color="inherit">
+              Início
+            </Button>
             <Button onClick={() => history.push('/admin')} color="inherit">
               Admin
             </Button>

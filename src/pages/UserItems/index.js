@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import MaterialTable from 'material-table';
+import { toast } from 'react-toastify';
 import { Container, Content, Title, Image } from './styles';
 import defaultImg from '~/assets/images/default.png';
 import Menu from '~/components/Menu';
@@ -27,7 +28,17 @@ export default function UserItems({ history }) {
     );
   }
 
-  async function removeItem() {}
+  async function removeItems(removed) {
+    removed.forEach(async item => {
+      try {
+        await api.delete(`/items/${item.id}`);
+        toast.success('Item removido com sucesso!');
+        window.location.reload();
+      } catch (err) {
+        toast.error(err.message);
+      }
+    });
+  }
 
   useEffect(() => {
     getItems();
@@ -66,7 +77,7 @@ export default function UserItems({ history }) {
             {
               tooltip: 'Remover item',
               icon: 'delete_forever',
-              onClick: (evt, data) => removeItem(),
+              onClick: (evt, data) => removeItems(data),
             },
           ]}
         />

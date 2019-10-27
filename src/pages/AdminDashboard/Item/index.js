@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
+import { toast } from 'react-toastify';
 import {
   Container,
   Content,
   ItemBox,
   ButtonContainer,
+  ButtonContainerCenter,
   ButtonOption,
   TextWrapper,
   Title,
 } from './styles';
 import Menu from '~/components/Menu';
 import defaultImg from '~/assets/images/default.png';
-
 import { adminApi } from '~/services/api';
 
 export default function Item(props) {
@@ -20,6 +21,7 @@ export default function Item(props) {
   } = props;
 
   const [item, setItem] = useState({});
+  const [loading, setLoading] = useState(false);
 
   async function getItem() {
     try {
@@ -47,6 +49,46 @@ export default function Item(props) {
     );
   }
 
+  async function activateItem() {
+    setLoading(true);
+    try {
+      await adminApi.put(`/items/${item.id}`, {
+        active: true,
+      });
+      toast.success('Item ativado com sucesso!');
+      window.location.assign('/admin/dashboard');
+    } catch (err) {
+      toast.error('Erro ao ativar o item!');
+    }
+    setLoading(false);
+  }
+
+  async function changeItemStatus() {
+    setLoading(true);
+    try {
+      await adminApi.put(`/items/${item.id}`, {
+        status_id: 2,
+      });
+      toast.success('Voce marcou o item como encontrado!');
+      window.location.assign('/admin/dashboard');
+    } catch (err) {
+      toast.error('Erro ao alterar o status do item!');
+    }
+    setLoading(false);
+  }
+
+  async function removeItem() {
+    setLoading(true);
+    try {
+      await adminApi.delete(`/items/${item.id}`);
+      toast.success('Item removido com sucesso!');
+      window.location.assign('/admin/dashboard');
+    } catch (err) {
+      toast.error('Erro ao remover o item!');
+    }
+    setLoading(false);
+  }
+
   return (
     <Container>
       <Menu />
@@ -58,11 +100,21 @@ export default function Item(props) {
           <p>Local: {item.location}</p>
           <p>Turno: {item.period}</p>
           <p>Categoria: {item.category_name}</p>
+          <p>Tamanho: {item.size_name}</p>
           <p>Cor: {item.color_name}</p>
+          <p>Descrição: {item.description}</p>
           <ButtonContainer>
-            <ButtonOption>Ativar</ButtonOption>
-            <ButtonOption color="danger">Excluir</ButtonOption>
+            <ButtonOption onClick={() => activateItem()}>Ativar</ButtonOption>
+
+            <ButtonOption onClick={() => removeItem()} color="danger">
+              Excluir
+            </ButtonOption>
           </ButtonContainer>
+          <ButtonContainerCenter>
+            <ButtonOption onClick={() => changeItemStatus()}>
+              Marcar como encontrado
+            </ButtonOption>
+          </ButtonContainerCenter>
         </ItemBox>
       </Content>
     </Container>
