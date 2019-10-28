@@ -11,6 +11,8 @@ import AdminLogin from '~/pages/AdminLogin';
 import AdminDashboard from '~/pages/AdminDashboard';
 import Item from '~/pages/AdminDashboard/Item';
 import UserItems from '~/pages/UserItems';
+import Resolved from '~/pages/AdminDashboard/Resolved';
+import Logout from '~/services/logout';
 
 export default function Routes() {
   return (
@@ -21,6 +23,7 @@ export default function Routes() {
       <Route isPrivate path="/user/item/new" component={RegisterItem} />
       <Route isPrivate path="/user/item/search" component={Search} />
       <Route isPrivate path="/user/item/view" component={UserItems} />
+      <Route isPrivate path="/user/logout" component={Logout} />
       <Route exact isPrivate path="/admin" component={AdminLogin} />
       <Route
         exact
@@ -29,6 +32,7 @@ export default function Routes() {
         component={AdminDashboard}
       />
       <Route exact isPrivate path="/admin/item/:id" component={Item} />
+      <Route exact isPrivate path="/admin/resolved" component={Resolved} />
     </Switch>
   );
 }

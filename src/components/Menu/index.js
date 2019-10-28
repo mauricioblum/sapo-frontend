@@ -11,6 +11,18 @@ export default function Menu({ type }) {
         {type === 'admin' ? (
           <>
             <Title>Painel do moderador</Title>
+            <Button
+              onClick={() => history.push('/admin/dashboard')}
+              color="inherit"
+            >
+              Painel
+            </Button>
+            <Button
+              onClick={() => history.push('/admin/resolved')}
+              color="inherit"
+            >
+              Resolvidos
+            </Button>
             <Button onClick={() => history.push('/user/main')} color="inherit">
               Sair
             </Button>
@@ -24,6 +36,12 @@ export default function Menu({ type }) {
             </Button>
             <Button onClick={() => history.push('/admin')} color="inherit">
               Admin
+            </Button>
+            <Button
+              onClick={() => history.push('/user/logout')}
+              color="inherit"
+            >
+              Logout
             </Button>
           </>
         )}

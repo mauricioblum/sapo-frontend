@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { toast } from 'react-toastify';
+import { CircularProgress} from '@material-ui/core';
 import {
   Container,
   Content,
@@ -66,7 +67,7 @@ export default function Item(props) {
   async function changeItemStatus() {
     setLoading(true);
     try {
-      await adminApi.put(`/items/${item.id}`, {
+      await adminApi.put(`/items/status/${item.id}`, {
         status_id: 2,
       });
       toast.success('Voce marcou o item como encontrado!');
@@ -110,11 +111,21 @@ export default function Item(props) {
               Excluir
             </ButtonOption>
           </ButtonContainer>
-          <ButtonContainerCenter>
-            <ButtonOption onClick={() => changeItemStatus()}>
-              Marcar como encontrado
-            </ButtonOption>
-          </ButtonContainerCenter>
+          {!loading ? (
+            <ButtonContainerCenter>
+              {item.type === 1 ? (
+                <ButtonOption onClick={() => changeItemStatus()}>
+                  Marcar como encontrado
+                </ButtonOption>
+              ) : (
+                <ButtonOption onClick={() => changeItemStatus()}>
+                  Marcar como resolvido
+                </ButtonOption>
+              )}
+            </ButtonContainerCenter>
+          ) : (
+            <CircularProgress />
+          )}
         </ItemBox>
       </Content>
     </Container>

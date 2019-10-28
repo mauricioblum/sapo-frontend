@@ -5,6 +5,10 @@ const api = axios.create({
   baseURL: 'http://127.0.0.1:3333/',
 });
 
+export const publicApi = axios.create({
+  baseURL: 'http://127.0.0.1:3333/',
+});
+
 export const adminApi = axios.create({
   baseURL: 'http://127.0.0.1:3333/',
 });
