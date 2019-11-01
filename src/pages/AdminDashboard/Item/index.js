@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { toast } from 'react-toastify';
-import { CircularProgress} from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import {
   Container,
   Content,
@@ -39,12 +39,11 @@ export default function Item(props) {
   }, []);
 
   function downloadImage(fileId) {
-    if (!fileId)
-      return <img src={defaultImg} width="300" alt="no image available" />;
+    if (!fileId) return <img src={defaultImg} width="300" alt="unavailable" />;
     return (
       <img
         src={`http://127.0.0.1:3333/files/${fileId}`}
-        alt="description-image"
+        alt="item"
         width="300"
       />
     );
@@ -92,7 +91,7 @@ export default function Item(props) {
 
   return (
     <Container>
-      <Menu />
+      <Menu type="admin" />
       <Content>
         <ItemBox>
           <Title>Item {item.type === 1 ? 'Perdido' : 'Achado'}</Title>

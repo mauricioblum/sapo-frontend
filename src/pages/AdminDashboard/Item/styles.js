@@ -62,9 +62,9 @@ export const TextWrapper = styled.div`
   margin: 20px 0px;
 `;
 
-export const ButtonOption = styled(Button).attrs({
+export const ButtonOption = styled(Button).attrs(props => ({
   variant: 'contained',
-  color: props => (props.color === 'danger' ? 'secondary' : 'primary'),
-})`
+  color: props.color === 'danger' ? 'secondary' : 'primary',
+}))`
   margin-top: 15px !important;
 `;

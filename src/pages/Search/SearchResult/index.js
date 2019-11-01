@@ -27,6 +27,7 @@ export default function SearchResult({ searchResults }) {
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
+                <TableCell>Nome</TableCell>
                 <TableCell>Categoria</TableCell>
                 <TableCell>Tamanho</TableCell>
                 <TableCell>Cor</TableCell>
@@ -38,6 +39,7 @@ export default function SearchResult({ searchResults }) {
                   <TableCell component="th" scope="row">
                     {row.id}
                   </TableCell>
+                  <TableCell>{row.name}</TableCell>
                   <TableCell>{row.category_name}</TableCell>
                   <TableCell>{row.size_name}</TableCell>
                   <TableCell>{row.color_name}</TableCell>

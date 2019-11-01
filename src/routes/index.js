@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route as DomRoute } from 'react-router-dom';
 import Route from './Route';
 
 import Landing from '~/pages/Landing';
@@ -24,15 +24,10 @@ export default function Routes() {
       <Route isPrivate path="/user/item/search" component={Search} />
       <Route isPrivate path="/user/item/view" component={UserItems} />
       <Route isPrivate path="/user/logout" component={Logout} />
-      <Route exact isPrivate path="/admin" component={AdminLogin} />
-      <Route
-        exact
-        isPrivate
-        path="/admin/dashboard"
-        component={AdminDashboard}
-      />
-      <Route exact isPrivate path="/admin/item/:id" component={Item} />
-      <Route exact isPrivate path="/admin/resolved" component={Resolved} />
+      <DomRoute exact path="/admin" component={AdminLogin} />
+      <Route exact isAdmin path="/admin/dashboard" component={AdminDashboard} />
+      <Route exact isAdmin path="/admin/item/:id" component={Item} />
+      <Route exact isAdmin path="/admin/resolved" component={Resolved} />
     </Switch>
   );
 }

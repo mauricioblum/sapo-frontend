@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
-import { toast } from 'react-toastify';
 import { adminApi } from '~/services/api';
 import defaultImg from '~/assets/images/default.png';
 import Menu from '~/components/Menu';
@@ -59,23 +58,12 @@ export default function Resolved() {
           ]}
           data={solvedItems}
           title="Itens perdidos"
+          style={{ marginBottom: '30px' }}
           options={{
             selection: true,
             pageSize: 10,
             sorting: true,
           }}
-          // actions={[
-          //   {
-          //     tooltip: 'Ativar item',
-          //     icon: 'check_circle',
-          //     onClick: (evt, data) => editItem(data, 'active'),
-          //   },
-          //   {
-          //     tooltip: 'Desativar item',
-          //     icon: 'close',
-          //     onClick: (evt, data) => editItem(data, 'inactive'),
-          //   },
-          // ]}
         />
       </Content>
     </Container>

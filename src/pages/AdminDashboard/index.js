@@ -128,6 +128,7 @@ export default function AdminDashboard({ history }) {
             pageSize: 10,
             sorting: true,
           }}
+          style={{ marginBottom: '30px' }}
           actions={[
             {
               tooltip: 'Ativar item',

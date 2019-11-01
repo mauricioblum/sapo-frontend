@@ -61,7 +61,10 @@ export default function RegisterItem({ history }) {
       multipart.append('file', files[0]);
       const photoUpload = await api.post('/files', multipart);
       console.log(photoUpload.data);
-      const response = await api.post(`/items`, itemData);
+      const response = await api.post(`/items`, {
+        ...itemData,
+        file_id: photoUpload.data.id,
+      });
       toast('Item cadastrado com sucesso!');
       setItemData({
         name: '',
@@ -75,11 +78,12 @@ export default function RegisterItem({ history }) {
       });
       setFiles([]);
       setFileKey(fileKey + 1);
+      setLoading(false);
       history.push('/user/main');
     } catch (err) {
       console.log(err.message);
+      setLoading(false);
     }
-    setLoading(false);
   }
   return (
     <Container>

@@ -25,6 +25,7 @@ export default function Search() {
     name: '',
     size: '',
     category: '',
+    color: '',
   });
   const [loading, setLoading] = useState(false);
   const [searchArray, setSearchArray] = useState([]);
@@ -38,7 +39,7 @@ export default function Search() {
   async function searchItems() {
     setLoading(true);
     try {
-      const response = await api.post('/find', itemData);
+      const response = await api.post('/search', itemData);
       console.log(response.data);
       setSearchArray(response.data);
       setDisplaySearch(true);
@@ -106,6 +107,30 @@ export default function Search() {
                 <MenuItem value={6}>Acessórios</MenuItem>
                 <MenuItem value={7}>Livros</MenuItem>
                 <MenuItem value={8}>Outros</MenuItem>
+              </Select>
+            </Control>
+            <Control>
+              <InputLabel htmlFor="color">Cor</InputLabel>
+              <Select
+                value={itemData.color}
+                onChange={e => handleChange(e.target.value, 'color')}
+                inputProps={{
+                  name: 'color',
+                  id: 'color-simple',
+                }}
+              >
+                <MenuItem value="">Selecione...</MenuItem>
+                <MenuItem value={1}>Branco</MenuItem>
+                <MenuItem value={2}>Preto</MenuItem>
+                <MenuItem value={3}>Vermelho</MenuItem>
+                <MenuItem value={4}>Laranja</MenuItem>
+                <MenuItem value={5}>Amarelo</MenuItem>
+                <MenuItem value={6}>Verde</MenuItem>
+                <MenuItem value={7}>Azul</MenuItem>
+                <MenuItem value={8}>Marrom</MenuItem>
+                <MenuItem value={9}>Cinza</MenuItem>
+                <MenuItem value={10}>Rosa</MenuItem>
+                <MenuItem value={11}>Outro</MenuItem>
               </Select>
             </Control>
             {!loading ? (
