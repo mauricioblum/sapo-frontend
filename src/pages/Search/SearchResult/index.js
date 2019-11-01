@@ -49,8 +49,13 @@ export default function SearchResult({ searchResults }) {
           </Table>
           <TextWrapper>
             <p>
-              Você pode entrar em contato com XXX e retirar os itens no local
-              XXX, levando seu documento de identificação.
+              Você pode entrar em contato com o Setor pedagógico do Campus
+              (localizado no prédio A) para retirar o seu Item, levando seu
+              documento de identificação.
+            </p>
+            <p>
+              Para mais informações, entre em contato com o Marcelo -
+              marcelo@canoas.ifrs.edu.br
             </p>
             <p>Você pode também realizar outra pesquisa</p>
           </TextWrapper>

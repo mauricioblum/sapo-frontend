@@ -17,14 +17,17 @@ import { toast } from 'react-toastify';
 
 import Menu from '~/components/Menu';
 import api from '~/services/api';
+import './dropzone.css';
 
 import {
   Container,
+  TypeGroup,
   Content,
   FormBox,
   SubmitButton,
   Control,
   Title,
+  ColorOption,
 } from './styles';
 
 export default function RegisterItem({ history }) {
@@ -100,9 +103,9 @@ export default function RegisterItem({ history }) {
               margin="normal"
               variant="outlined"
             />
-            <FormControl component="fieldset">
+            <Control component="fieldset">
               <FormLabel component="legend">Tipo</FormLabel>
-              <RadioGroup
+              <TypeGroup
                 aria-label="type"
                 name="type"
                 value={itemData.type}
@@ -118,9 +121,9 @@ export default function RegisterItem({ history }) {
                   control={<Radio />}
                   label="Eu achei"
                 />
-              </RadioGroup>
-            </FormControl>
-            <FormControl>
+              </TypeGroup>
+            </Control>
+            <Control>
               <InputLabel htmlFor="size">Tamanho</InputLabel>
               <Select
                 value={itemData.size}
@@ -135,8 +138,8 @@ export default function RegisterItem({ history }) {
                 <MenuItem value={3}>Médio</MenuItem>
                 <MenuItem value={4}>Grande</MenuItem>
               </Select>
-            </FormControl>
-            <FormControl>
+            </Control>
+            <Control>
               <InputLabel htmlFor="category">Categoria</InputLabel>
               <Select
                 value={itemData.category}
@@ -155,10 +158,11 @@ export default function RegisterItem({ history }) {
                 <MenuItem value={5}>Produtos de Beleza</MenuItem>
                 <MenuItem value={6}>Acessórios</MenuItem>
                 <MenuItem value={7}>Livros</MenuItem>
-                <MenuItem value={8}>Outros</MenuItem>
+                <MenuItem value={8}>Eletrônicos</MenuItem>
+                <MenuItem value={9}>Outros</MenuItem>
               </Select>
-            </FormControl>
-            <FormControl>
+            </Control>
+            <Control>
               <InputLabel htmlFor="color">Cor</InputLabel>
               <Select
                 value={itemData.color}
@@ -168,20 +172,42 @@ export default function RegisterItem({ history }) {
                   id: 'color-simple',
                 }}
               >
-                <MenuItem value={1}>Branco</MenuItem>
-                <MenuItem value={2}>Preto</MenuItem>
-                <MenuItem value={3}>Vermelho</MenuItem>
-                <MenuItem value={4}>Laranja</MenuItem>
-                <MenuItem value={5}>Amarelo</MenuItem>
-                <MenuItem value={6}>Verde</MenuItem>
-                <MenuItem value={7}>Azul</MenuItem>
-                <MenuItem value={8}>Marrom</MenuItem>
-                <MenuItem value={9}>Cinza</MenuItem>
-                <MenuItem value={10}>Rosa</MenuItem>
-                <MenuItem value={11}>Outro</MenuItem>
+                <MenuItem value={1}>
+                  <ColorOption color="white">Branco</ColorOption>
+                </MenuItem>
+                <MenuItem value={2}>
+                  <ColorOption color="black">Preto</ColorOption>
+                </MenuItem>
+                <MenuItem value={3}>
+                  <ColorOption color="red">Vermelho</ColorOption>
+                </MenuItem>
+                <MenuItem value={4}>
+                  <ColorOption color="orange">Laranja</ColorOption>
+                </MenuItem>
+                <MenuItem value={5}>
+                  <ColorOption color="yellow">Amarelo</ColorOption>
+                </MenuItem>
+                <MenuItem value={6}>
+                  <ColorOption color="green">Verde</ColorOption>
+                </MenuItem>
+                <MenuItem value={7}>
+                  <ColorOption color="blue">Azul</ColorOption>
+                </MenuItem>
+                <MenuItem value={8}>
+                  <ColorOption color="brown">Marrom</ColorOption>
+                </MenuItem>
+                <MenuItem value={9}>
+                  <ColorOption color="lightgray">Cinza</ColorOption>
+                </MenuItem>
+                <MenuItem value={10}>
+                  <ColorOption color="magenta">Rosa</ColorOption>
+                </MenuItem>
+                <MenuItem value={11}>
+                  <ColorOption color="inherit">Outro</ColorOption>
+                </MenuItem>
               </Select>
-            </FormControl>
-            <FormControl>
+            </Control>
+            <Control>
               <TextField
                 id="location"
                 label="Local perdido/encontrado"
@@ -190,8 +216,8 @@ export default function RegisterItem({ history }) {
                 margin="normal"
                 variant="outlined"
               />
-            </FormControl>
-            <FormControl>
+            </Control>
+            <Control>
               <InputLabel htmlFor="period-simple">
                 Turno (Manhã / Tarde / Noite)
               </InputLabel>
@@ -207,7 +233,7 @@ export default function RegisterItem({ history }) {
                 <MenuItem value="Tarde">Tarde</MenuItem>
                 <MenuItem value="Noite">Noite</MenuItem>
               </Select>
-            </FormControl>
+            </Control>
             <TextField
               id="description"
               label="Descrição"
@@ -223,6 +249,8 @@ export default function RegisterItem({ history }) {
             acceptedFiles={['image/*']}
             filesLimit={1}
             maxFileSize={2000000}
+            dropzoneClass="drop"
+            dropzoneParagraphClass="dropText"
             showFileNames
             dropzoneText="Arraste ou clique para adicionar uma imagem"
             onChange={f => handleFiles(f)}

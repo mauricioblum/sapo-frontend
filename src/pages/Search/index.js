@@ -106,7 +106,8 @@ export default function Search() {
                 <MenuItem value={5}>Produtos de Beleza</MenuItem>
                 <MenuItem value={6}>Acessórios</MenuItem>
                 <MenuItem value={7}>Livros</MenuItem>
-                <MenuItem value={8}>Outros</MenuItem>
+                <MenuItem value={8}>Eletrônicos</MenuItem>
+                <MenuItem value={9}>Outros</MenuItem>
               </Select>
             </Control>
             <Control>

@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
-import { Paper, Button, FormControl } from '@material-ui/core';
+import { Paper, Button, FormControl, RadioGroup } from '@material-ui/core';
 
 export const Container = styled.div`
   flex: 1;
+  padding-bottom: 40px;
+`;
+
+export const TypeGroup = styled(RadioGroup)`
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: wrap;
 `;
 
 export const Headline = styled.h1`
@@ -25,7 +32,7 @@ export const Content = styled.div`
 `;
 
 export const FormBox = styled(Paper)`
-  width: 600px;
+  width: 800px;
   height: auto;
   min-height: 300px;
   padding: 20px;
@@ -38,6 +45,8 @@ export const FormBox = styled(Paper)`
 
 export const Control = styled(FormControl)`
   width: 100%;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 `;
 
 export const SubmitButton = styled(Button).attrs({
@@ -45,4 +54,18 @@ export const SubmitButton = styled(Button).attrs({
   color: 'primary',
 })`
   margin-top: 15px !important;
+`;
+
+export const ColorOption = styled.span`
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: ${props => props.color};
+    margin-left: 5px;
+    margin-right: 10px;
+    border: 1px solid lightgray;
+  }
 `;

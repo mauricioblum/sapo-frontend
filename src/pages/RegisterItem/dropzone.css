@@ -1,0 +1,9 @@
+.drop {
+  min-height: 100px !important;
+}
+
+.dropText {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem !important;
+  color: #43A047;
+}
