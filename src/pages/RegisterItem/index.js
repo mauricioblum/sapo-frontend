@@ -65,7 +65,7 @@ export default function RegisterItem({ history }) {
         ...itemData,
         file_id: photoUpload.data.id,
       });
-      toast('Item cadastrado com sucesso!');
+      toast.success('Item cadastrado com sucesso!');
       setItemData({
         name: '',
         type: '1',

@@ -33,7 +33,7 @@ export default function AdminDashboard({ history }) {
         toast.error(err.message);
       }
     });
-    toast('Item(s) editados com sucesso!');
+    toast.success('Item(s) editados com sucesso!');
     getItems();
   }
 

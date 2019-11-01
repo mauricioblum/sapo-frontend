@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
+import { differenceInDays } from 'date-fns';
 import {
   Container,
   Box,
@@ -17,6 +18,7 @@ import { publicApi } from '~/services/api';
 export default function Landing({ history }) {
   const [itemCount, setItemCount] = useState(0);
   const [resolvedCount, setResolvedCount] = useState(0);
+  const [semesterEnd, setSemesterEnd] = useState(0);
 
   async function fetchItems() {
     try {
@@ -30,8 +32,19 @@ export default function Landing({ history }) {
     }
   }
 
+  async function getSemesterEnd() {
+    try {
+      const response = await publicApi.get('/options/semester/get');
+      const date = new Date(response.data.semester_end);
+      setSemesterEnd(differenceInDays(date, Date.now()));
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
   useEffect(() => {
     fetchItems();
+    getSemesterEnd();
   }, []);
 
   return (
@@ -68,7 +81,7 @@ export default function Landing({ history }) {
             <Grid item>
               <Box>
                 <CountBox>
-                  <Count>28</Count>
+                  <Count>{semesterEnd}</Count>
                   <CountTitle>Dias restantes no Semestre</CountTitle>
                 </CountBox>
               </Box>
