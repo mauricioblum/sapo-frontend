@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import { toast } from 'react-toastify';
+import Chip from '@material-ui/core/Chip';
 import { adminApi } from '~/services/api';
 import defaultImg from '~/assets/images/default.png';
 import Menu from '~/components/Menu';
 
-import { Container, Content, Title, Image } from './styles';
+import {
+  Container,
+  Content,
+  Title,
+  Image,
+  OptionWrapper,
+  SimpleButton,
+} from './styles';
 
 export default function AdminDashboard({ history }) {
   const [lost, setLost] = useState([]);
@@ -55,7 +63,10 @@ export default function AdminDashboard({ history }) {
     <Container>
       <Menu type="admin" />
       <Content>
-        <Title>Itens perdidos</Title>
+        <Title>Itens Perdidos</Title>
+        <OptionWrapper>
+          <SimpleButton onClick={() => getItems()}>Atualizar</SimpleButton>
+        </OptionWrapper>
         <MaterialTable
           columns={[
             {
@@ -72,7 +83,11 @@ export default function AdminDashboard({ history }) {
               field: 'active',
               defaultSort: 'desc',
               render: rowData =>
-                rowData.active ? <p>ATIVO</p> : <p>INATIVO</p>,
+                rowData.active ? (
+                  <Chip label="ATIVO" color="primary" />
+                ) : (
+                  <Chip label="INATIVO" />
+                ),
             },
           ]}
           data={lost}
@@ -98,7 +113,7 @@ export default function AdminDashboard({ history }) {
             },
           ]}
         />
-        <Title>Itens achados</Title>
+        <Title>Itens Achados</Title>
         <MaterialTable
           columns={[
             {
@@ -115,7 +130,11 @@ export default function AdminDashboard({ history }) {
               field: 'active',
               defaultSort: 'desc',
               render: rowData =>
-                rowData.active ? <p>ATIVO</p> : <p>INATIVO</p>,
+                rowData.active ? (
+                  <Chip label="ATIVO" color="primary" />
+                ) : (
+                  <Chip label="INATIVO" />
+                ),
             },
           ]}
           data={found}

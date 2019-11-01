@@ -3,6 +3,7 @@ import { Paper, FormControl, Button } from '@material-ui/core';
 
 export const Container = styled.div`
   flex: 1;
+  padding-bottom: 40px;
 `;
 
 export const Content = styled.div`
