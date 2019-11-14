@@ -23,6 +23,12 @@ export default function Menu({ type }) {
             >
               Resolvidos
             </Button>
+            <Button
+              onClick={() => history.push('/admin/options')}
+              color="inherit"
+            >
+              Opções
+            </Button>
             <Button onClick={() => history.push('/user/main')} color="inherit">
               Sair
             </Button>

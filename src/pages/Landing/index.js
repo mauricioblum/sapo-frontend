@@ -14,6 +14,7 @@ import {
   EnterButton,
 } from './styles';
 import { publicApi } from '~/services/api';
+import sapoLogo from '~/assets/images/sapoIFRS.png';
 
 export default function Landing({ history }) {
   const [itemCount, setItemCount] = useState(0);
@@ -51,7 +52,7 @@ export default function Landing({ history }) {
     <Container>
       <Grid container spacing={2} justify="center" alignItems="center">
         <Branding>
-          <Logo src="http://pic-aboo.com/wp-content/uploads/animal-frog-001.png" />
+          <Logo src={sapoLogo} />
           <Title>SAPO - Sistema de Achados e Perdidos do IFRS Canoas</Title>
         </Branding>
         <Grid item xs={12}>
