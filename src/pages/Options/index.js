@@ -3,6 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { format, parseISO } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import { toast } from 'react-toastify';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Menu from '~/components/Menu';
+import { adminApi } from '~/services/api';
 import {
   Container,
   OptionsContainer,
@@ -10,12 +18,19 @@ import {
   OptionButton,
   Datepicker,
 } from './styles';
-import { adminApi } from '~/services/api';
-import Menu from '~/components/Menu';
 
 export default function Options({ history }) {
   const [semesterDate, setSemesterDate] = useState('2019-12-31');
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   async function getCurrentSemesterDate() {
     try {
@@ -25,6 +40,16 @@ export default function Options({ history }) {
       setSemesterDate(format(znDate, 'yyyy-MM-dd'));
     } catch (err) {
       console.log(err);
+    }
+  }
+
+  async function handleReset() {
+    try {
+      adminApi.delete('/admin/items/reset');
+      toast.success('O SAPO foi reiniciado com sucesso!');
+      history.push('/admin/dashboard');
+    } catch (err) {
+      toast.error(err.message);
     }
   }
 
@@ -70,7 +95,40 @@ export default function Options({ history }) {
             Visualizar relatório
           </OptionButton>
         </OptionBox>
+
+        <OptionBox>
+          <h3>Reiniciar SAPO</h3>
+          <p>Remover todos os itens e começar um novo semestre.</p>
+          <OptionButton disabled={loading} onClick={() => setOpen(true)}>
+            Reiniciar
+          </OptionButton>
+        </OptionBox>
       </OptionsContainer>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Tem certeza que deseja reiniciar?
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Todos os itens serão excluídos do sistema e NÃO poderão ser
+            restaurados!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={handleReset} color="primary" autoFocus>
+            Reiniciar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 }
