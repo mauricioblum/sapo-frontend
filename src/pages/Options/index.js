@@ -79,13 +79,7 @@ export default function Options({ history }) {
     <Container>
       <Menu type="admin" />
       <OptionsContainer>
-        <Grid
-          spacing={12}
-          container
-          xs={12}
-          alignItems="center"
-          justify="center"
-        >
+        <Grid container alignItems="center" justify="center">
           <Grid item>
             <OptionBox>
               <h3>Alterar Fim de Semestre</h3>
@@ -104,7 +98,7 @@ export default function Options({ history }) {
               <h3>Visualizar relatório de itens</h3>
               <OptionButton
                 disabled={loading}
-                onClick={() => history.push('report')}
+                onClick={() => history.push('/admin/options/report')}
               >
                 Visualizar relatório
               </OptionButton>
