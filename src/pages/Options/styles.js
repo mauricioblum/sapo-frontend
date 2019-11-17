@@ -15,9 +15,9 @@ export const Headline = styled.h1`
 `;
 
 export const OptionsContainer = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   margin-top: 20px;
 `;
 
@@ -26,7 +26,8 @@ export const OptionBox = styled(Paper)`
   height: auto;
   min-height: 200px;
   padding: 20px;
-  margin-right: 35px;
+  margin-right: 15px;
+  margin-top: 15px;
   display: flex;
   justify-content: ${props =>
     props.centered === 'center' ? 'space-evenly' : 'space-around'};
