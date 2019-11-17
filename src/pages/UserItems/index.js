@@ -57,14 +57,19 @@ export default function UserItems({ history }) {
               render: rowData => downloadImage(rowData.file_id),
               cellStyle: { width: 200 },
             },
-            { title: 'Nome', field: 'name' },
-            { title: 'Categoria', field: 'category_name' },
-            { title: 'Cor', field: 'color_name' },
+            { title: 'Nome', field: 'name', cellStyle: { fontSize: 18 } },
+            {
+              title: 'Categoria',
+              field: 'category_name',
+              cellStyle: { fontSize: 18 },
+            },
+            { title: 'Cor', field: 'color_name', cellStyle: { fontSize: 18 } },
             {
               title: 'Ativo',
               field: 'active',
               render: rowData =>
                 rowData.active ? <p>ATIVO</p> : <p>INATIVO</p>,
+              cellStyle: { fontSize: 18 },
             },
           ]}
           data={items}

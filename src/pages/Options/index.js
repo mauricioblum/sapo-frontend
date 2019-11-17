@@ -13,8 +13,8 @@ import {
 import { adminApi } from '~/services/api';
 import Menu from '~/components/Menu';
 
-export default function Options() {
-  const [semesterDate, setSemesterDate] = useState('2019-31-12');
+export default function Options({ history }) {
+  const [semesterDate, setSemesterDate] = useState('2019-12-31');
   const [loading, setLoading] = useState(false);
 
   async function getCurrentSemesterDate() {
@@ -58,6 +58,16 @@ export default function Options() {
           <Datepicker value={semesterDate} onChange={e => handleDate(e)} />
           <OptionButton disabled={loading} onClick={() => changeSemesterDate()}>
             Alterar
+          </OptionButton>
+        </OptionBox>
+
+        <OptionBox>
+          <h3>Visualizar relatório de itens</h3>
+          <OptionButton
+            disabled={loading}
+            onClick={() => history.push('report')}
+          >
+            Visualizar relatório
           </OptionButton>
         </OptionBox>
       </OptionsContainer>

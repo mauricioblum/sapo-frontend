@@ -26,6 +26,7 @@ export const Logo = styled.img`
 export const Title = styled.h1`
   color: white;
   text-align: center;
+  margin-top: 1rem;
 `;
 
 export const Box = styled(Paper)`

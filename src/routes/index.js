@@ -13,6 +13,7 @@ import Item from '~/pages/AdminDashboard/Item';
 import UserItems from '~/pages/UserItems';
 import Resolved from '~/pages/AdminDashboard/Resolved';
 import Options from '~/pages/Options';
+import ReportItems from '~/pages/Options/ReportItems';
 import Logout from '~/services/logout';
 
 export default function Routes() {
@@ -30,6 +31,12 @@ export default function Routes() {
       <Route exact isAdmin path="/admin/item/:id" component={Item} />
       <Route exact isAdmin path="/admin/resolved" component={Resolved} />
       <Route exact isAdmin path="/admin/options" component={Options} />
+      <Route
+        exact
+        isAdmin
+        path="/admin/options/report"
+        component={ReportItems}
+      />
     </Switch>
   );
 }
